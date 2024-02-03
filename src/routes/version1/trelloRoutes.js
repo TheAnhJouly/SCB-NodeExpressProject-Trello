@@ -24,23 +24,23 @@ const validateCardDelete = require('../../middlewares/Validation/Card/validateCa
 
 //router
 //board
-router.get('/', trelloController.getAllBoard)
-router.post('/',validateBoardCreate,VerifyToken,trelloController.createBoard)
-router.put('/updateBoard',validateBoardUpdate,VerifyToken,trelloController.updateBoard)
-router.delete('/deleteBoard',validateBoardDelete,trelloController.deleteBoard)
+router.get('/', trelloController.getAllBoard) //checked
+router.post('/',validateBoardCreate,VerifyToken,trelloController.createBoard)//checked
+router.put('/updateBoard',validateBoardUpdate,VerifyToken,trelloController.updateBoard)//checked
+router.delete('/deleteBoard',validateBoardDelete,VerifyToken,trelloController.deleteBoard)//checked
 
 //list  
 
-router.get('/getList', VerifyToken,trelloControllerList.getAllList)
-router.post('/createList',validateListCreate,VerifyToken,trelloControllerList.createList)
-router.put('/updateList',validateListUpdate,VerifyToken,trelloControllerList.updateList) 
-router.delete('/deleteList',validateListDelete,VerifyToken,trelloControllerList.deleteList)
+router.get('/getList', VerifyToken,trelloControllerList.getAllList)//checked
+router.post('/createList',validateListCreate,VerifyToken,trelloControllerList.createList)//checked
+router.put('/updateList',validateListUpdate,VerifyToken,trelloControllerList.updateList) //checked
+router.delete('/deleteList',validateListDelete,VerifyToken,trelloControllerList.deleteList) //checked
 
 //card
-router.get('/getCard',VerifyToken,trelloControllerCard.getAllCard)
-router.post('/createCard',validateCardCreate,VerifyToken,trelloControllerCard.createCard)
-router.put('/updateCard',validateCardUpdate,VerifyToken,trelloControllerCard.updateCard) 
-router.delete('/deleteCard',validateCardDelete,VerifyToken,trelloControllerCard.deleteCard)
+router.get('/getCard',VerifyToken,trelloControllerCard.getAllCard)//checked
+router.post('/createCard',validateCardCreate,VerifyToken,trelloControllerCard.createCard)//checked
+router.put('/updateCard',validateCardUpdate,VerifyToken,trelloControllerCard.updateCard) //checked
+router.delete('/deleteCard',validateCardDelete,VerifyToken,trelloControllerCard.deleteCard) //checked
 
 
 module.exports = router 

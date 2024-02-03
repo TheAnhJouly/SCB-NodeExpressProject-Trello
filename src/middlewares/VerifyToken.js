@@ -15,9 +15,8 @@ verifyToken =  (req, res, next) => {
         }
         req.username = decoded.username; // giai ma chuoi 
         req.password = decoded.password;
-        next();
     });
+    next();
 };
-
 
 module.exports = verifyToken;

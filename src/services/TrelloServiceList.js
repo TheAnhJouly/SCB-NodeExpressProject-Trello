@@ -2,30 +2,29 @@ const Board = require("../models/Board");
 const List = require("../models/List")
 
 class TrelloServiceList{
-    //done
+    
     createList = async (idBoard,dataList) => {
         try {
             const list = new List(dataList);
-            await list.save();
             await Board.updateOne({ _id: idBoard }, { $push: { lists: list } });
+            await list.save();
             return list;
         } catch (error) {
             throw error;
         }
     }
-    //done 
+    
     getAllList = async (idBoard) => {
         try {
             let listsResult = []; 
             let Lists = await Board.findOne({_id:idBoard}) 
-            console.log("Lists nay 123123123",Lists)
             Lists.lists.map( (list)=>{
                 listsResult.push(list)
             })
             return listsResult
         } catch (error) {
             throw error;
-        }
+        } 
     }
 
      
@@ -43,14 +42,13 @@ class TrelloServiceList{
         try {
             
             const list = await List.findById(id)
-            console.log("list nay 123123123",list)
             await List.deleteOne(list);
             return list;
         } catch (error) {
             throw error;
         }
     }
-
+ 
 }
 
 module.exports = new TrelloServiceList()

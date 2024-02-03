@@ -1,11 +1,11 @@
 const Joi = require("joi");
 
 const ValidationSchema = Joi.object({
-    _id : Joi.string().required()
+    id : Joi.string().required()
 });
 
 
-const validateCardDelete = (req, res, next) => {
+const validateUserDelete = (req, res, next) => {
     const { error, value } =ValidationSchema.validate(req.query, {abortEarly: false});
     console.log(error)
     if (error) {
@@ -18,4 +18,4 @@ const validateCardDelete = (req, res, next) => {
     next();
 };
 
-module.exports = validateCardDelete;
+module.exports = validateUserDelete;

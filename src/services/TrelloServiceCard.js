@@ -3,9 +3,9 @@ const List = require("../models/List")
 const Card = require("../models/Card")
 
 class TrelloServiceCard{
-    
+     
     createCard = async (idList,dataCard) => {
-        try {
+        try { 
             const card = new Card(dataCard);
             await card.save();
             await List.updateOne({ _id: idList }, { $push: { Cards: card } });
@@ -27,7 +27,7 @@ class TrelloServiceCard{
             throw error;
         }
     }
-
+ 
 
     updateCard = async (idCard,cardName) => {
         try {
@@ -39,11 +39,11 @@ class TrelloServiceCard{
     }
 
 
-    deleteCard = async (idCard) => { 
-        try {
-            const card = await Card.findById(idCard)
-            await card.deleteOne();
-            return card;
+    deleteCard = async (_id) => { 
+        try { 
+            const card = await Card.findById(_id)
+            await card.deleteOne(); 
+            return true;
         } catch (error) {
             throw error;
         }

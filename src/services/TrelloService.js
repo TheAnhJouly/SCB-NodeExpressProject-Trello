@@ -38,8 +38,8 @@ class TrelloService{
         } catch (error) {
             throw error;
         }
-    }
+    } 
 
-}
-
+} 
+ 
 module.exports = new TrelloService()

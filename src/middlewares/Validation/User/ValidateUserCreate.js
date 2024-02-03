@@ -1,14 +1,11 @@
 const Joi = require('joi');
 
     const BoardValidationSchema = Joi.object({
-        idList: Joi.string().required(),
-        cardName: Joi.string().required(),
-        desCard: Joi.string().required(),
-        dueDate : Joi.date(),
-        cardMember: Joi.string()
+    username: Joi.string().required(),
+    password: Joi.string().required(),
     });
- 
-    const validateCardCreate = (req, res, next) => {
+
+    const validateUserCreate = (req, res, next) => {
     
     const { error, value } = BoardValidationSchema.validate(req.body, {abortEarly: false});
     if (error) { 
@@ -19,4 +16,4 @@ const Joi = require('joi');
     next();
 };
 
-module.exports = validateCardCreate;
+module.exports = validateUserCreate;

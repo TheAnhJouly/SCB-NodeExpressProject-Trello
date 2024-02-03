@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const ValidationSchema = Joi.object({
-    _id : Joi.string().required()
+    idBoard : Joi.string().required()
 });
 
 

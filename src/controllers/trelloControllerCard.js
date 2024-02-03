@@ -6,7 +6,7 @@ const Card = require("../models/Card")
 class trelloControllerCard{   
 
     createCard = async (req, res, next) => {  
-        try {
+        try { 
             const  {cardName,desCard,dueDate,avatar,cardMember} = req.body
             const idList = req.body.idList
 
@@ -21,9 +21,16 @@ class trelloControllerCard{
                 cardMember: cardMember
             } 
             const trelloCard = await TrelloServiceCard.createCard(idList,dataCard)
-            res.status(200).json({
-                trelloCard
-            })
+            if(trelloCard){ 
+                res.status(200).json({
+                    message: "Tao Card thanh cong",
+                    trelloCard
+                })
+            }else{
+                res.status(404).json({
+                    message: "Tao Card that bai"
+                })
+            }
         } catch (error) { 
             throw error
         }
@@ -33,26 +40,34 @@ class trelloControllerCard{
         try {
             const idList = req.query.idList;
             const Cards = await TrelloServiceCard.getAllCard(idList)
-            res.status(200).json({
-                Cards
-            })
+            if(Cards){
+                res.status(200).json({
+                    message : "Danh sach card: ",
+                    Cards
+                })
+            }
+            else{
+                res.status(404).json({
+                    message : "List nay chua tao card nao!"
+                })
+            }
         } catch (error) { 
             throw error
         }
     }
     // update + post -> body , delete + get query
     updateCard = async (req, res, next) => {   
-        try {
+        try { 
             const idCard = req.body.idCard
-            const  cardName = req.body.cardName
+            const cardName = req.body.cardName
 
             const result = await TrelloServiceCard.updateCard(idCard,cardName)
             if(result){
                 res.status(200).json({
-                    'msg' : 'Updated'
+                    'msg' : 'Cap nhat thanh cong'
                 })
             }else{
-                throw new Error("update fail")
+                throw new Error("Cap nhat that bai")
             }
         } catch (error) { 
             throw error
@@ -61,18 +76,18 @@ class trelloControllerCard{
 
     deleteCard = async (req, res, next) => { 
         try {
-            let idCard = req.query.idCard
-            let result = await TrelloServiceCard.deleteCard(idCard)
+            let  _id  = req.query._id
+            let result = await TrelloServiceCard.deleteCard(_id)
             if(result){
-                res.status(200).json({'msg':'Deleted'})
+                res.status(200).json({'msg':'Xoa thanh cong'}) 
             }else{
-                throw new Error('Delete fail')
+                throw new Error('Xoa that bai')
             }
 
         } catch (error) { 
             throw error
         }
     }
-}
+} 
 
 module.exports = new trelloControllerCard();
